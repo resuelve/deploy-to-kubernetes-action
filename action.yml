@@ -1,0 +1,27 @@
+name: "Update kubernetes deployment image"
+description: "Update kubernetes deployment image"
+inputs:
+  cert:
+    description: "k8s cluster certificate"
+    required: true
+  server:
+    description: "k8s cluster server"
+    required: true
+  token:
+    description: "k8s cluster token"
+    required: true
+  namespace:
+    description: "Namespace where deployment is located"
+    required: true
+  name:
+    description: "Deployment name"
+    required: true
+  image:
+    description: "Image to be used on update"
+    required: true
+  container:
+    description: "Image to be used on update"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
