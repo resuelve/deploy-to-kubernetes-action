@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash -l
 
 KUBERNETES_CERT="${INPUT_CERT}"
 KUBERNETES_SERVER="${INPUT_SERVER}"
@@ -25,4 +25,8 @@ echo "Deploying to ${KUBERNETES_SERVER}"
 
 echo "Updating ${DEPLOYMENT} in ${NAMESPACE} with ${IMAGE}..."
 
-kubectl -n "${NAMESPACE}" set image "deployment/${DEPLOYMENT}" "${CONTAINER}=${IMAGE}"
+IFS=',' read -ra containers <<< "$CONTAINER"
+
+for container in "${containers[@]}"; do
+    kubectl -n "${NAMESPACE}" set image "deployment/${DEPLOYMENT}" "${container}=${IMAGE}"
+done
