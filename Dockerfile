@@ -1,6 +1,6 @@
-FROM alpine:3.10
+FROM alpine:3.17
 
-RUN apk --update add curl bash
+RUN apk --update add curl bash jq
 
 # Download kubectl binary
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
