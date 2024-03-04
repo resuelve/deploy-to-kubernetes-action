@@ -19,7 +19,7 @@ This action will run `kubectl` to update the given deployment container with a n
 
 ```yaml
 - name: Update deployment container image
-  uses: resuelve/deploy-to-kubernetes-action@v1
+  uses: resuelve/deploy-to-kubernetes-action@v1.1
     with:
       cert: ${{ secrets.KUBERNETES_CERT }}
       server: ${{ secrets.KUBERNETES_SERVER }}
