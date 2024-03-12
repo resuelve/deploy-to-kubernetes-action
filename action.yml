@@ -1,14 +1,9 @@
+---
 name: "Update kubernetes deployment image"
 description: "Update kubernetes deployment image"
 inputs:
-  cert:
-    description: "k8s cluster certificate"
-    required: true
-  server:
-    description: "k8s cluster server"
-    required: true
-  token:
-    description: "k8s cluster token"
+  kube_config:
+    description: "Kube config, regular kubeconfig file enccoded in base64"
     required: true
   namespace:
     description: "Namespace where deployment is located"
