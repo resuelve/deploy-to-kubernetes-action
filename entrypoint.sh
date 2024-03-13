@@ -2,9 +2,6 @@
 # exit on any error
 set -e
 
-KUBERNETES_CERT="${INPUT_CERT}"
-KUBERNETES_SERVER="${INPUT_SERVER}"
-KUBERNETES_TOKEN="${INPUT_TOKEN}"
 KUBERNETES_USER="default"
 CONTEXT="default"
 CLUSTER_NAME="default"
@@ -13,6 +10,11 @@ DEPLOYMENT="${INPUT_NAME}"
 IMAGE="${INPUT_IMAGE}"
 CONTAINER="${INPUT_CONTAINER}"
 EXTERNAL_SECRET="${INPUT_EXTERNAL_SECRET}"
+KUBE_CONFIG="${INPUT_KUBE_CONFIG}"
+
+KUBERNETES_CERT=$(echo "$KUBE_CONFIG" | base64 -d | yq .clusters.0.cluster.certificate-authority-data)
+KUBERNETES_SERVER=$(echo "$KUBE_CONFIG" | base64 -d | yq .clusters.0.cluster.server)
+KUBERNETES_TOKEN=$(echo "$KUBE_CONFIG" | base64 -d | yq .users.0.user.token)
 
 echo "${KUBERNETES_CERT}" | base64 -d >ca.crt
 
